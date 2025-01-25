@@ -8,15 +8,18 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
+  sources:
+  - repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 68.3.0
     chart: kube-prometheus-stack
     helm:
       version: v3
       releaseName: promstack
       valueFiles:
-        - monitoring_values.yaml
+        - $values/environments/sandbox/monitoring/values.yaml
+  - repoURL: 'https://github.com/KestutisKazlauskas/kong-with-metrics-deployment.git'
+    targetRevision: HEAD
+    ref: values
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring
@@ -26,7 +29,7 @@ spec:
       selfHeal: true
       allowEmpty: true
     syncOptions:
-      - Validate=true
+      - Validate=false
       - CreateNamespace=true
       - PrunePropagationPolicy=foreground
       - PruneLast=true
