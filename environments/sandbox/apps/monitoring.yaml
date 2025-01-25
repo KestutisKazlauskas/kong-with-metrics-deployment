@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 68.3.0
-    chart: prometheus-community/kube-prometheus-stack
+    chart: kube-prometheus-stack
     helm:
       version: v3
       releaseName: promstack
