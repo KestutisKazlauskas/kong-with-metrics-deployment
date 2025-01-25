@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://charts.konghq.com
     targetRevision: 0.17.0
-    chart: kong/ingress
+    chart: ingress
     helm:
       version: v3
       releaseName: kong
