@@ -16,7 +16,7 @@ spec:
       version: v3
       releaseName: promstack
       valueFiles:
-        - ../monitoring/values.yaml
+        - environments/sandbox/monitoring/values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: monitoring
