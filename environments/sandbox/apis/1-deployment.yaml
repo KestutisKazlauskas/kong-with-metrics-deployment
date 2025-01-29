@@ -36,3 +36,36 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: # assing to deployment it self
+  name: go-events-api
+  namespace: apis
+spec:
+  replicas: 1
+  selector: # identifiy the pods
+    matchLabels:
+      app: go-events-api
+  template: # assing to pods
+    metadata:
+      labels:
+        app: go-events-api
+    spec:
+      containers:
+        - name: go-events-api
+          image: kstutisk4/go-api-example:0.1.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_HOST
+              value: "host.minikube.internal:27017"
+            - name: MONGODB_USER
+              value: "api"
+            - name: MONGODB_PASS
+              value: "password"
+            - name: MONGODB_DB
+              value: "events"
+            - name: APP_PORT
+              value: "8080"

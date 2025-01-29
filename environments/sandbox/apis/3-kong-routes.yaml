@@ -18,17 +18,10 @@ spec:
             name: billing
             port:
               number: 80
-      - path: /comments
+      - path: /events
         pathType: ImplementationSpecific
         backend:
           service:
-            name: comments
-            port:
-              number: 80
-      - path: /invoice
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: invoice
+            name: events
             port:
               number: 80

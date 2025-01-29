@@ -15,37 +15,21 @@ spec:
       name: http
   selector:
     app: httpbin
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
   namespace: apis
-  name: invoice
+  name: events
   labels:
-    app: invoice
+    app: events
 spec:
   type: NodePort
   ports:
     - port: 80
-      targetPort: 80
+      targetPort: 8080
       protocol: TCP
       name: http
   selector:
-    app: httpbin
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: apis
-  name: comments
-  labels:
-    app: comments
-spec:
-  type: NodePort
-  ports:
-    - port: 80
-      targetPort: 80
-      protocol: TCP
-      name: http
-  selector:
-    app: httpbin
+    app: go-events-api
