@@ -67,5 +67,5 @@ spec:
               value: "password"
             - name: MONGODB_DB
               value: "events"
-            - name: APP_PORT
+            - name: API_PORT
               value: "8080"
