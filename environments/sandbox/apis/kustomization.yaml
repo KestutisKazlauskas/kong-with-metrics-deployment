@@ -1,0 +1,6 @@
+---
+images:
+  - name: go-events-api
+    newTag: 0.1.0
+resources:
+  - ../../../apis-base

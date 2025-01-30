@@ -1,0 +1,71 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpbin
+  namespace: apis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpbin
+  template:
+    metadata:
+      labels:
+        app: httpbin
+    spec:
+      containers:
+        - name: httpbin
+          image: kong/httpbin:0.1.0
+          ports:
+            - containerPort: 80
+          env:
+            - name: NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: # assing to deployment it self
+  name: go-events-api
+  namespace: apis
+spec:
+  replicas: 1
+  selector: # identifiy the pods
+    matchLabels:
+      app: go-events-api
+  template: # assing to pods
+    metadata:
+      labels:
+        app: go-events-api
+    spec:
+      containers:
+        - name: go-events-api
+          image: kstutisk4/go-api-example
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_HOST
+              value: "host.minikube.internal:27017"
+            - name: MONGODB_USER
+              value: "api"
+            - name: MONGODB_PASS
+              value: "password"
+            - name: MONGODB_DB
+              value: "events"
+            - name: API_PORT
+              value: "8080"
