@@ -5,7 +5,7 @@ metadata:
   name: apis
   namespace: argocd
   annotations:
-    argocd-image-updater.argoproj.io/image-list: kstutisk4/go-api-example:~v0.3
+    argocd-image-updater.argoproj.io/image-list: kstutisk4/go-api-example:~0.1
     argocd-image-updater.argoproj.io/write-back-method: git
   finalizers:
     - resources-finalizer.argocd.argoproj.io
