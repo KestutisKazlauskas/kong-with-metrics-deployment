@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/KestutisKazlauskas/kong-with-metrics-deployment.git
+    repoURL: ssh://git@github.com/KestutisKazlauskas/kong-with-metrics-deployment.git
     targetRevision: main
     path: environments/sandbox/apis
   destination:
