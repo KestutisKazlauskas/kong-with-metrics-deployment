@@ -4,13 +4,16 @@ kind: Application
 metadata:
   name: apis
   namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: kstutisk4/go-api-example:~v0.3
+    argocd-image-updater.argoproj.io/write-back-method: git
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: https://github.com/KestutisKazlauskas/kong-with-metrics-deployment.git
-    targetRevision: HEAD
+    targetRevision: main
     path: environments/sandbox/apis
   destination:
     server: 'https://kubernetes.default.svc'
