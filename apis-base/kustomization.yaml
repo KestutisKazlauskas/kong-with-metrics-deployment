@@ -4,6 +4,7 @@ kind: Kustomization
 metadata:
   name: arbitrary
 resources:
+  - hpa.yaml
   - kong-routes.yaml
   - service.yaml
   - deployment.yaml
