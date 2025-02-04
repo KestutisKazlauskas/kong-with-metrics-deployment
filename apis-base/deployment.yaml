@@ -44,7 +44,6 @@ metadata: # assing to deployment it self
   name: go-events-api
   namespace: apis
 spec:
-  replicas: 1
   selector: # identifiy the pods
     matchLabels:
       app: go-events-api
@@ -56,6 +55,8 @@ spec:
       containers:
         - name: go-events-api
           image: kstutisk4/go-api-example
+          ports:
+            - containerPort: 8080
           readinessProbe:
             httpGet:
               path: /health
@@ -68,8 +69,13 @@ spec:
               port: 8080
             initialDelaySeconds: 15
             periodSeconds: 20
-          ports:
-            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+            requests:
+              cpu: "250m"
+              memory: "128Mi"
           env:
             - name: MONGODB_HOST
               value: "host.minikube.internal:27017"
